@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>视频分享 · 下载与播放</title>
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#0f1115; --surface:#171a21; --surface-2:#1d212a;
+  --border:#272d38; --text:#e9edf3; --muted:#98a2b3;
+  --win:#3b82f6; --mac:#94a3b8; --android:#22c55e; --ios:#f59e0b;
+  --radius:8px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--border);background:linear-gradient(180deg,#141821,#0f1115)}
+header{border-bottom:1px solid var(--border);background:linear-gradient(180deg,var(--surface),var(--bg))}
+.header-inner{padding:34px 0 28px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--android);box-shadow:0 0 0 4px rgba(34,197,94,.12)}
+h1{font-size:clamp(24px,3.2vw,34px);line-height:1.25;margin:12px 0 8px;letter-spacing:0}
+.sub{color:var(--muted);max-width:640px;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--muted);font-size:12px}
+main{padding:28px 0 48px}
+.grid{display:grid;grid-template-columns:1fr;gap:18px}
+@media (min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 14px 10px}
+.platform{display:flex;align-items:center;gap:10px;min-width:0}
+.icon{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;flex:0 0 auto;background:var(--surface-2);color:var(--accent)}
+.platform strong{display:block;font-size:15px;line-height:1.3}
+.platform span{display:block;color:var(--muted);font-size:12px;line-height:1.4}
+.tag{font-size:11px;color:var(--muted);border:1px solid var(--border);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.video{position:relative;background:#000;margin:0 14px;border-radius:6px;overflow:hidden;aspect-ratio:var(--ratio,16/9)}
+.video video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
+.actions{display:flex;gap:8px;padding:12px 14px 14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:38px;padding:0 12px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font:inherit;font-size:13px;cursor:pointer;text-decoration:none;transition:background .15s,border-color .15s,transform .1s}
+.btn:hover{background:#242a35;border-color:#394252}
+.btn:hover{background:color-mix(in srgb,var(--surface-2) 88%,var(--text) 12%);border-color:var(--border)}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn.primary{background:var(--accent-strong);border-color:transparent;color:#fff}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn svg{width:16px;height:16px;flex:0 0 auto}
+.btn .ok{display:none}
+.btn.copied .copy{display:none}
+.btn.copied .ok{display:inline-flex;align-items:center;gap:7px}
+footer{border-top:1px solid var(--border);color:var(--muted);font-size:12px;padding:18px 0 30px}
+@media (max-width:560px){
+  .wrap{padding:0 14px}
+  .header-inner{padding:26px 0 22px}
+  .grid{grid-template-columns:1fr;gap:14px}
+  .video[data-orient="portrait"]{max-height:520px;margin:0 auto;width:100%}
+  .actions .btn{flex:1 1 auto}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap header-inner">
+    <div class="eyebrow"><span class="dot"></span> WPT 设备教学 · 4 个视频</div>
+    <h1>视频分享</h1>
+    <p class="sub">按设备选择对应视频，可直接在线播放，也可以下载到本地。竖屏视频建议在手机上观看。</p>
+    <div class="meta">
+      <span class="chip">4 个视频 · 约 22 MB</span>
+      <span class="chip">Windows</span><span class="chip">Mac</span><span class="chip">安卓</span><span class="chip">苹果</span>
+      <button class="btn" type="button" id="copyAll" aria-label="复制全部视频链接"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>复制全部链接</span></button>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+  <div class="grid" id="grid"></div>
+</main>
+<footer><div class="wrap">如果视频无法播放，请点击「下载」保存到本地后观看。</div></footer>
+<script>
+const THEMES = {
+  current:{bg:'#0f1115',surface:'#171a21','surface-2':'#1d212a',border:'#272d38',text:'#e9edf3',muted:'#98a2b3',win:'#3b82f6',mac:'#94a3b8',android:'#22c55e',ios:'#f59e0b'},
+  slate:{bg:'#0d1622',surface:'#14202e','surface-2':'#1a2939',border:'#223247',text:'#e6eef8',muted:'#8fa3ba',win:'#4c8dff',mac:'#9fb0c7',android:'#35c46a',ios:'#f2a33c'},
+  navy:{bg:'#0a1020',surface:'#111a2e','surface-2':'#17233d',border:'#22304d',text:'#e8eeff',muted:'#93a2c4',win:'#4c8dff',mac:'#9fb0c7',android:'#35c46a',ios:'#f2a33c'},
+  warm:{bg:'#171412',surface:'#211c19','surface-2':'#2a2420',border:'#342c27',text:'#f0e9e2',muted:'#b3a59a',win:'#5b9bff',mac:'#c0b2a6',android:'#4cc47a',ios:'#f2a33c'},
+  light:{bg:'#f2f4f7',surface:'#ffffff','surface-2':'#f7f9fb',border:'#e1e5eb',text:'#1b1f24',muted:'#667085',win:'#2563eb',mac:'#475569',android:'#15803d',ios:'#b45309'},
+  mist:{bg:'#eaf0f7',surface:'#ffffff','surface-2':'#f5f8fc',border:'#d8e2ee',text:'#172033',muted:'#5f6f86',win:'#2563eb',mac:'#475569',android:'#15803d',ios:'#b45309'},
+  forest:{bg:'#0f1714',surface:'#17211d','surface-2':'#1e2b25',border:'#27352f',text:'#e6f0ea',muted:'#93a89c',win:'#4c8dff',mac:'#a8bcb0',android:'#4cc47a',ios:'#f2a33c'},
+  cream:{bg:'#f6f2ea',surface:'#fffdf8','surface-2':'#fbf7ef',border:'#e6ded1',text:'#26211b',muted:'#7a6f63',win:'#2563eb',mac:'#475569',android:'#15803d',ios:'#b45309'}
+};
+const themeKey = new URLSearchParams(location.search).get('theme') || 'cream';
+const theme = THEMES[themeKey] || THEMES.current;
+for (const [k, v] of Object.entries(theme)) document.documentElement.style.setProperty('--' + k, v);
+
+const items = [
+  {label:"Windows", note:"电脑端 · 横屏", file:"Windows.mp4", ratio:"16 / 9", orient:"landscape", size:"6.1 MB", color:"var(--win)", strong:"var(--win-strong)", icon:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>'},
+  {label:"Mac", note:"电脑端 · 横屏", file:"Mac.mp4", ratio:"16 / 9", orient:"landscape", size:"4.6 MB", color:"var(--mac)", strong:"var(--mac-strong)", icon:'<rect x="4" y="5" width="16" height="11" rx="2"/><path d="M2 19h20"/>'},
+  {label:"安卓", note:"手机端 · 竖屏", file:"安卓.mp4", ratio:"9 / 16", orient:"portrait", size:"2.6 MB", color:"var(--android)", strong:"var(--android-strong)", icon:'<rect x="7" y="3" width="10" height="18" rx="2"/><circle cx="12" cy="18" r="0.8"/>'},
+  {label:"苹果", note:"手机端 · 竖屏", file:"苹果.mp4", ratio:"9 / 16", orient:"portrait", size:"8.0 MB", color:"var(--ios)", strong:"var(--ios-strong)", icon:'<rect x="7" y="3" width="10" height="18" rx="2"/><circle cx="12" cy="18" r="0.8"/>'}
+];
+const grid = document.getElementById('grid');
+items.forEach(function(it){
+  const url = new URL(encodeURI(it.file), location.href).href;
+  const el = document.createElement('article');
+  el.className = 'card';
+  el.style.setProperty('--accent', it.color);
+  el.style.setProperty('--accent-strong', it.strong);
+  el.innerHTML =
+    '<div class="card-head">'+
+      '<div class="platform"><span class="icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+it.icon+'</svg></span>'+
+      '<div><strong>'+it.label+'</strong><span>'+it.note+'</span></div></div>'+
+      '<span class="tag">'+it.size+'</span>'+
+    '</div>'+
+    '<div class="video" data-orient="'+it.orient+'" style="--ratio:'+it.ratio+'">'+
+      '<video controls preload="metadata" playsinline src="'+url+'"></video>'+
+    '</div>'+
+    '<div class="actions">'+
+      '<a class="btn primary" href="'+url+'" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>下载</a>'+
+      '<button class="btn" type="button" data-url="'+url+'" aria-label="复制 '+it.label+' 视频链接"><svg class="copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><svg class="ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span class="copy">复制链接</span><span class="ok">已复制</span></button>'+
+    '</div>';
+  grid.appendChild(el);
+});
+document.querySelectorAll('button[data-url]').forEach(function(btn){
+  btn.addEventListener('click', async function(){
+    const url = btn.getAttribute('data-url');
+    try { await navigator.clipboard.writeText(url); }
+    catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = url; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+    }
+    btn.classList.add('copied');
+    setTimeout(function(){ btn.classList.remove('copied'); }, 1600);
+  });
+});
+const copyAllBtn = document.getElementById('copyAll');
+if (copyAllBtn) {
+  copyAllBtn.addEventListener('click', async function(){
+    const text = items.map(function(it){ return new URL(encodeURI(it.file), location.href).href; }).join('\n');
+    try { await navigator.clipboard.writeText(text); }
+    catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+    }
+    const label = copyAllBtn.querySelector('span');
+    if (label) { const old = label.textContent; label.textContent = '已复制'; setTimeout(function(){ label.textContent = old; }, 1600); }
+  });
+}
+</script>
+</body>
+</html>

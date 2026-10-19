@@ -132,6 +132,7 @@ h1{margin:0;font-size:42px;line-height:1.12;letter-spacing:0;font-weight:800}
 (() => {
   const CONFIG_URL = new URL('../rank-config.json', location.href);
   const REFRESH_MS = 15000;
+  const requestedDay = new URLSearchParams(location.search).get('day') || '';
   const list = document.getElementById('rank-list');
   const liveState = document.getElementById('live-state');
   const liveText = document.getElementById('live-text');
@@ -191,7 +192,8 @@ h1{margin:0;font-size:42px;line-height:1.12;letter-spacing:0;font-weight:800}
     setLive(true, '正在刷新');
     try {
       const base = await loadConfig();
-      const res = await fetch(`${base}/api/rank?t=${Date.now()}`, {cache: 'no-store'});
+      const dayQuery = requestedDay ? `&day=${encodeURIComponent(requestedDay)}` : '';
+      const res = await fetch(`${base}/api/rank?t=${Date.now()}${dayQuery}`, {cache: 'no-store'});
       if (!res.ok) throw new Error(`接口返回 ${res.status}`);
       const data = await res.json();
       if (!data.ok) throw new Error(data.error || '接口返回异常');

@@ -97,14 +97,14 @@ h1{margin:0;font-size:42px;line-height:1.12;letter-spacing:0;font-weight:800}
 <main class="shell">
   <div class="topbar">
     <div class="brand"><span class="brand-mark">WPT</span><span>观看有奖</span></div>
-    <div class="season">S3 · 休整赛季</div>
+    <div class="season" id="season-badge">S3 · 休整赛季</div>
   </div>
 
   <section class="hero" aria-labelledby="page-title">
     <div>
-      <p class="eyebrow">WEEKLY RANKING CLOSED</p>
+      <p class="eyebrow" id="hero-eyebrow">DAILY LIVE RANKING</p>
       <h1 id="page-title">S3 实时积分榜</h1>
-      <p class="intro">每日互动积分实时更新。S3 休整赛季取消周榜，当前页面只展示当天有效积分。</p>
+      <p class="intro" id="hero-intro">每日互动积分实时更新。S3 休整赛季取消周榜，当前页面只展示当天有效积分。</p>
     </div>
     <div class="live" id="live-state"><span class="live-dot"></span><span id="live-text">正在连接</span></div>
   </section>
@@ -140,10 +140,53 @@ h1{margin:0;font-size:42px;line-height:1.12;letter-spacing:0;font-weight:800}
   const playersValue = document.getElementById('players-value');
   const updatedValue = document.getElementById('updated-value');
   const sourceNote = document.getElementById('source-note');
+  const seasonBadge = document.getElementById('season-badge');
+  const heroEyebrow = document.getElementById('hero-eyebrow');
+  const pageTitle = document.getElementById('page-title');
+  const heroIntro = document.getElementById('hero-intro');
   let apiBase = '';
   let loading = false;
 
   const fmtScore = new Intl.NumberFormat('zh-CN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+  function seasonView(season) {
+    const value = String(season || 'S3').toUpperCase();
+    if (value === 'S3') {
+      return {
+        badge: 'S3 · 休整赛季',
+        eyebrow: 'DAILY LIVE RANKING',
+        title: 'S3 实时积分榜',
+        intro: '每日互动积分实时更新。S3 休整赛季取消周榜，当前页面只展示当天有效积分。',
+        empty: '开播并开始统计后，排行榜会自动出现。S3 只计算当天积分，不展示周榜。'
+      };
+    }
+    if (value === 'S2') {
+      return {
+        badge: 'S2 · 历史积分',
+        eyebrow: 'DAILY RANKING HISTORY',
+        title: 'S2 每日积分榜',
+        intro: '该日期属于 S2 赛季历史数据，展示当天有效互动积分。',
+        empty: '该日期没有可展示的上榜记录。'
+      };
+    }
+    return {
+      badge: `${value} · 历史积分`,
+      eyebrow: 'DAILY RANKING HISTORY',
+      title: `${value} 每日积分榜`,
+      intro: '展示该日期保存的有效互动积分。',
+      empty: '该日期没有可展示的上榜记录。'
+    };
+  }
+
+  function applySeason(season) {
+    const view = seasonView(season);
+    seasonBadge.textContent = view.badge;
+    heroEyebrow.textContent = view.eyebrow;
+    pageTitle.textContent = view.title;
+    heroIntro.textContent = view.intro;
+    document.title = `${view.title} · WPT`;
+    return view;
+  }
 
   function setLive(ok, text) {
     liveState.classList.toggle('is-error', !ok);
@@ -161,9 +204,10 @@ h1{margin:0;font-size:42px;line-height:1.12;letter-spacing:0;font-weight:800}
     if (retry) document.getElementById('retry-btn').addEventListener('click', refresh);
   }
 
-  function renderRows(rows) {
+  function renderRows(rows, view) {
     if (!rows.length) {
-      list.innerHTML = '<div class="state"><strong>今天还没有上榜记录</strong><p>开播并开始统计后，排行榜会自动出现。S3 只计算当天积分，不展示周榜。</p></div>';
+      const title = requestedDay ? '该日期还没有上榜记录' : '今天还没有上榜记录';
+      list.innerHTML = `<div class="state"><strong>${title}</strong><p>${view.empty}</p></div>`;
       return;
     }
     list.innerHTML = rows.map(row => {
@@ -198,12 +242,15 @@ h1{margin:0;font-size:42px;line-height:1.12;letter-spacing:0;font-weight:800}
       const data = await res.json();
       if (!data.ok) throw new Error(data.error || '接口返回异常');
 
+      const view = applySeason(data.season);
       dayValue.textContent = data.day || '--';
       playersValue.textContent = Number(data.total_players || 0);
       updatedValue.textContent = String(data.generated_at || '--').slice(11) || '--';
-      sourceNote.textContent = `每 ${Number(data.refresh_sec || 15)} 秒更新 · 只显示公开昵称与积分`;
-      renderRows(Array.isArray(data.rows) ? data.rows : []);
-      setLive(true, data.status === 'waiting' ? '等待开播' : '实时更新中');
+      sourceNote.textContent = requestedDay
+        ? '历史日期查询 · 只显示公开昵称与积分'
+        : `每 ${Number(data.refresh_sec || 15)} 秒更新 · 只显示公开昵称与积分`;
+      renderRows(Array.isArray(data.rows) ? data.rows : [], view);
+      setLive(true, data.status === 'waiting' ? '等待开播' : (requestedDay ? '历史榜单' : '实时更新中'));
     } catch (err) {
       setLive(false, '连接中断');
       renderState('暂时无法读取排行榜', `${err.message || err}。页面会自动重试，已分享的网址不会变化。`, true);

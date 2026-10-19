@@ -130,7 +130,10 @@ h1{margin:0;font-size:42px;line-height:1.12;letter-spacing:0;font-weight:800}
 
 <script>
 (() => {
-  const CONFIG_URL = new URL('../rank-config.json', location.href);
+  const CONFIG_URLS = [
+    'https://raw.githubusercontent.com/WPT-Life-hub/video-share/main/rank-config.json',
+    new URL('../rank-config.json', location.href).href
+  ];
   const SNAPSHOT_URL = 'https://raw.githubusercontent.com/WPT-Life-hub/video-share/main/rank-data.json';
   const REFRESH_MS = 15000;
   const params = new URLSearchParams(location.search);
@@ -225,12 +228,20 @@ h1{margin:0;font-size:42px;line-height:1.12;letter-spacing:0;font-weight:800}
 
   async function loadConfig() {
     if (apiBase) return apiBase;
-    const res = await fetch(`${CONFIG_URL}?t=${Date.now()}`, {cache: 'no-store'});
-    if (!res.ok) throw new Error(`配置文件加载失败（${res.status}）`);
-    const cfg = await res.json();
-    apiBase = String(cfg.api_base || '').trim().replace(/\/+$/, '');
-    if (!apiBase) throw new Error('实时数据接口正在配置');
-    return apiBase;
+    let lastError = null;
+    for (const url of CONFIG_URLS) {
+      try {
+        const res = await fetch(`${url}?t=${Date.now()}`, {cache: 'no-store'});
+        if (!res.ok) throw new Error(`配置文件加载失败（${res.status}）`);
+        const cfg = await res.json();
+        apiBase = String(cfg.api_base || '').trim().replace(/\/+$/, '');
+        if (!apiBase) throw new Error('实时数据接口正在配置');
+        return apiBase;
+      } catch (err) {
+        lastError = err;
+      }
+    }
+    throw lastError || new Error('配置文件加载失败');
   }
 
   async function loadSnapshot() {

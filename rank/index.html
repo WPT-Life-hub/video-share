@@ -131,8 +131,11 @@ h1{margin:0;font-size:42px;line-height:1.12;letter-spacing:0;font-weight:800}
 <script>
 (() => {
   const CONFIG_URL = new URL('../rank-config.json', location.href);
+  const SNAPSHOT_URL = 'https://raw.githubusercontent.com/WPT-Life-hub/video-share/main/rank-data.json';
   const REFRESH_MS = 15000;
-  const requestedDay = new URLSearchParams(location.search).get('day') || '';
+  const params = new URLSearchParams(location.search);
+  const requestedDay = params.get('day') || '';
+  const forceSnapshot = params.get('source') === 'snapshot';
   const list = document.getElementById('rank-list');
   const liveState = document.getElementById('live-state');
   const liveText = document.getElementById('live-text');
@@ -230,12 +233,21 @@ h1{margin:0;font-size:42px;line-height:1.12;letter-spacing:0;font-weight:800}
     return apiBase;
   }
 
+  async function loadSnapshot() {
+    const res = await fetch(`${SNAPSHOT_URL}?v=${Date.now()}`, {cache: 'no-store'});
+    if (!res.ok) throw new Error(`稳定快照加载失败（${res.status}）`);
+    const data = await res.json();
+    if (!data.ok || !Array.isArray(data.rows)) throw new Error('稳定快照内容异常');
+    if (requestedDay && data.day !== requestedDay) throw new Error('稳定快照不含该历史日期');
+    return data;
+  }
+
   async function refresh() {
     if (loading) return;
     loading = true;
     setLive(true, '正在刷新');
     try {
-      const base = await loadConfig();
+      const base = forceSnapshot ? await Promise.reject(new Error('已切换到稳定快照')) : await loadConfig();
       const dayQuery = requestedDay ? `&day=${encodeURIComponent(requestedDay)}` : '';
       const res = await fetch(`${base}/api/rank?t=${Date.now()}${dayQuery}`, {cache: 'no-store'});
       if (!res.ok) throw new Error(`接口返回 ${res.status}`);
@@ -252,9 +264,23 @@ h1{margin:0;font-size:42px;line-height:1.12;letter-spacing:0;font-weight:800}
       renderRows(Array.isArray(data.rows) ? data.rows : [], view);
       setLive(true, data.status === 'waiting' ? '等待开播' : (requestedDay ? '历史榜单' : '实时更新中'));
     } catch (err) {
-      setLive(false, '连接中断');
-      renderState('暂时无法读取排行榜', `${err.message || err}。页面会自动重试，已分享的网址不会变化。`, true);
       apiBase = '';
+      try {
+        const snapshot = await loadSnapshot();
+        const view = applySeason(snapshot.season);
+        dayValue.textContent = snapshot.day || '--';
+        playersValue.textContent = Number(snapshot.total_players || 0);
+        const published = String(snapshot._published_at || snapshot.generated_at || '--');
+        updatedValue.textContent = published.slice(11) || '--';
+        sourceNote.textContent = requestedDay
+          ? '实时通道暂不可用 · 显示稳定历史快照'
+          : '实时通道暂不可用 · 显示最近成功快照';
+        renderRows(snapshot.rows, view);
+        setLive(true, `稳定快照 ${published.slice(11, 19) || ''}`.trim());
+      } catch (snapshotErr) {
+        setLive(false, '连接中断');
+        renderState('暂时无法读取排行榜', `${err.message || err}；${snapshotErr.message || snapshotErr}。页面会自动重试，已分享的网址不会变化。`, true);
+      }
     } finally {
       loading = false;
     }

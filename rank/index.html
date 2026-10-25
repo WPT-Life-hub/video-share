@@ -131,10 +131,20 @@ h1{margin:0;font-size:42px;line-height:1.12;letter-spacing:0;font-weight:800}
 <script>
 (() => {
   const CONFIG_URLS = [
-    'https://raw.githubusercontent.com/WPT-Life-hub/video-share/main/rank-config.json',
-    new URL('../rank-config.json', location.href).href
+    new URL('../rank-config.json', location.href).href,
+    'https://raw.githubusercontent.com/WPT-Life-hub/video-share/main/rank-config.json'
   ];
-  const SNAPSHOT_URL = 'https://raw.githubusercontent.com/WPT-Life-hub/video-share/main/rank-data.json';
+  const SNAPSHOT_URLS = [
+    new URL('../rank-data.json', location.href).href,
+    'https://raw.githubusercontent.com/WPT-Life-hub/video-share/main/rank-data.json'
+  ];
+  function fetchWithTimeout(url, ms) {
+    const opt = {cache: 'no-store'};
+    if (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) {
+      opt.signal = AbortSignal.timeout(ms || 8000);
+    }
+    return fetch(url, opt);
+  }
   const REFRESH_MS = 15000;
   const params = new URLSearchParams(location.search);
   const requestedDay = params.get('day') || '';
@@ -231,7 +241,7 @@ h1{margin:0;font-size:42px;line-height:1.12;letter-spacing:0;font-weight:800}
     let lastError = null;
     for (const url of CONFIG_URLS) {
       try {
-        const res = await fetch(`${url}?t=${Date.now()}`, {cache: 'no-store'});
+        const res = await fetchWithTimeout(`${url}?t=${Date.now()}`, 6000);
         if (!res.ok) throw new Error(`配置文件加载失败（${res.status}）`);
         const cfg = await res.json();
         apiBase = String(cfg.api_base || '').trim().replace(/\/+$/, '');
@@ -245,12 +255,20 @@ h1{margin:0;font-size:42px;line-height:1.12;letter-spacing:0;font-weight:800}
   }
 
   async function loadSnapshot() {
-    const res = await fetch(`${SNAPSHOT_URL}?v=${Date.now()}`, {cache: 'no-store'});
-    if (!res.ok) throw new Error(`稳定快照加载失败（${res.status}）`);
-    const data = await res.json();
-    if (!data.ok || !Array.isArray(data.rows)) throw new Error('稳定快照内容异常');
-    if (requestedDay && data.day !== requestedDay) throw new Error('稳定快照不含该历史日期');
-    return data;
+    let lastError = null;
+    for (const url of SNAPSHOT_URLS) {
+      try {
+        const res = await fetchWithTimeout(`${url}?v=${Date.now()}`, 8000);
+        if (!res.ok) throw new Error(`稳定快照加载失败（${res.status}）`);
+        const data = await res.json();
+        if (!data.ok || !Array.isArray(data.rows)) throw new Error('稳定快照内容异常');
+        if (requestedDay && data.day !== requestedDay) throw new Error('稳定快照不含该历史日期');
+        return data;
+      } catch (err) {
+        lastError = err;
+      }
+    }
+    throw lastError || new Error('稳定快照加载失败');
   }
 
   async function refresh() {
@@ -260,7 +278,7 @@ h1{margin:0;font-size:42px;line-height:1.12;letter-spacing:0;font-weight:800}
     try {
       const base = forceSnapshot ? await Promise.reject(new Error('已切换到稳定快照')) : await loadConfig();
       const dayQuery = requestedDay ? `&day=${encodeURIComponent(requestedDay)}` : '';
-      const res = await fetch(`${base}/api/rank?t=${Date.now()}${dayQuery}`, {cache: 'no-store'});
+      const res = await fetchWithTimeout(`${base}/api/rank?t=${Date.now()}${dayQuery}`, 6000);
       if (!res.ok) throw new Error(`接口返回 ${res.status}`);
       const data = await res.json();
       if (!data.ok) throw new Error(data.error || '接口返回异常');

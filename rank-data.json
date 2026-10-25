@@ -2,17 +2,17 @@
   "ok": true,
   "season": "S3",
   "day": "2026-10-25",
-  "generated_at": "2026-10-25 22:23:59",
+  "generated_at": "2026-10-25 22:38:59",
   "refresh_sec": 15,
   "total_players": 0,
   "top_score": 0,
   "rows": [],
   "source": {
-    "at": "2026-10-25 22:23:51",
-    "members": 41,
+    "at": "2026-10-25 22:38:51",
+    "members": 39,
     "watch_state": "ok"
   },
   "status": "waiting",
-  "_published_at": "2026-10-25 22:24:02",
-  "_published_epoch": 1792938242
+  "_published_at": "2026-10-25 22:39:06",
+  "_published_epoch": 1792939146
 }

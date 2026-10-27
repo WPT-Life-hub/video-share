@@ -2,34 +2,34 @@
   "ok": true,
   "season": "S3",
   "day": "2026-10-27",
-  "generated_at": "2026-10-28 00:56:23",
+  "generated_at": "2026-10-28 01:14:00",
   "refresh_sec": 15,
   "total_players": 82,
-  "top_score": 529.44,
+  "top_score": 546.82,
   "rows": [
     {
       "rank": 1,
       "nickname": "圈圈德州大王",
-      "score": 529.44,
-      "presence_min": 212.0,
-      "speaking_min": 173,
+      "score": 546.82,
+      "presence_min": 219.8,
+      "speaking_min": 179,
       "screen_min": 0
     },
     {
       "rank": 2,
       "nickname": "伤心雨25",
-      "score": 451.31,
-      "presence_min": 204.2,
-      "speaking_min": 118,
-      "screen_min": 92
+      "score": 462.33,
+      "presence_min": 209.2,
+      "speaking_min": 120,
+      "screen_min": 97
     },
     {
       "rank": 3,
       "nickname": "shy",
-      "score": 408.61,
-      "presence_min": 217.8,
-      "speaking_min": 80,
-      "screen_min": 210
+      "score": 426.02,
+      "presence_min": 225.5,
+      "speaking_min": 83,
+      "screen_min": 217
     },
     {
       "rank": 4,
@@ -42,21 +42,45 @@
     {
       "rank": 5,
       "nickname": "伤心太平洋66",
-      "score": 171.14,
-      "presence_min": 324.2,
+      "score": 174.64,
+      "presence_min": 330.0,
       "speaking_min": 14,
-      "screen_min": 286
+      "screen_min": 290
     },
     {
       "rank": 6,
       "nickname": "一路狂飙",
-      "score": 153.96,
-      "presence_min": 362.8,
+      "score": 157.41,
+      "presence_min": 369.8,
       "speaking_min": 5,
-      "screen_min": 348
+      "screen_min": 356
     },
     {
       "rank": 7,
+      "nickname": "yt",
+      "score": 152.06,
+      "presence_min": 421.8,
+      "speaking_min": 0,
+      "screen_min": 373
+    },
+    {
+      "rank": 8,
+      "nickname": "tom",
+      "score": 151.84,
+      "presence_min": 409.0,
+      "speaking_min": 0,
+      "screen_min": 404
+    },
+    {
+      "rank": 9,
+      "nickname": "baobei",
+      "score": 151.78,
+      "presence_min": 421.8,
+      "speaking_min": 0,
+      "screen_min": 371
+    },
+    {
+      "rank": 10,
       "nickname": "镜心",
       "score": 150.59,
       "presence_min": 404.0,
@@ -64,44 +88,20 @@
       "screen_min": 397
     },
     {
-      "rank": 8,
-      "nickname": "yt",
-      "score": 149.16,
-      "presence_min": 414.0,
-      "speaking_min": 0,
-      "screen_min": 365
-    },
-    {
-      "rank": 9,
-      "nickname": "tom",
-      "score": 148.94,
-      "presence_min": 401.2,
-      "speaking_min": 0,
-      "screen_min": 396
-    },
-    {
-      "rank": 10,
-      "nickname": "baobei",
-      "score": 148.88,
-      "presence_min": 414.0,
-      "speaking_min": 0,
-      "screen_min": 363
-    },
-    {
       "rank": 11,
       "nickname": "ni",
-      "score": 147.0,
-      "presence_min": 397.2,
+      "score": 148.31,
+      "presence_min": 400.8,
       "speaking_min": 0,
-      "screen_min": 382
+      "screen_min": 385
     },
     {
       "rank": 12,
       "nickname": "鱼pro",
-      "score": 143.66,
-      "presence_min": 398.0,
+      "score": 145.78,
+      "presence_min": 403.8,
       "speaking_min": 0,
-      "screen_min": 353
+      "screen_min": 359
     },
     {
       "rank": 13,
@@ -121,19 +121,19 @@
     },
     {
       "rank": 15,
+      "nickname": "重炮手雷龙",
+      "score": 133.28,
+      "presence_min": 414.5,
+      "speaking_min": 0,
+      "screen_min": 237
+    },
+    {
+      "rank": 16,
       "nickname": "大家好",
       "score": 132.25,
       "presence_min": 355.0,
       "speaking_min": 0,
       "screen_min": 348
-    },
-    {
-      "rank": 16,
-      "nickname": "重炮手雷龙",
-      "score": 131.34,
-      "presence_min": 406.8,
-      "speaking_min": 0,
-      "screen_min": 237
     },
     {
       "rank": 17,
@@ -321,6 +321,14 @@
     },
     {
       "rank": 40,
+      "nickname": "颈椎病来了",
+      "score": 80.5,
+      "presence_min": 218.0,
+      "speaking_min": 0,
+      "screen_min": 208
+    },
+    {
+      "rank": 41,
       "nickname": "小白白",
       "score": 78.62,
       "presence_min": 213.0,
@@ -328,20 +336,12 @@
       "screen_min": 204
     },
     {
-      "rank": 41,
+      "rank": 42,
       "nickname": "不爱芬手",
       "score": 78.59,
       "presence_min": 115.5,
       "speaking_min": 9,
       "screen_min": 115
-    },
-    {
-      "rank": 42,
-      "nickname": "颈椎病来了",
-      "score": 77.59,
-      "presence_min": 210.2,
-      "speaking_min": 0,
-      "screen_min": 200
     },
     {
       "rank": 43,
@@ -370,8 +370,8 @@
     {
       "rank": 46,
       "nickname": "朝阳满天",
-      "score": 49.75,
-      "presence_min": 155.8,
+      "score": 51.69,
+      "presence_min": 163.5,
       "speaking_min": 0,
       "screen_min": 86
     },
@@ -411,9 +411,9 @@
       "rank": 51,
       "nickname": "君莫笑",
       "score": 28.42,
-      "presence_min": 195.5,
+      "presence_min": 203.2,
       "speaking_min": 0,
-      "screen_min": 192
+      "screen_min": 200
     },
     {
       "rank": 52,
@@ -481,6 +481,14 @@
     },
     {
       "rank": 60,
+      "nickname": "阴雨天",
+      "score": 8.62,
+      "presence_min": 23.0,
+      "speaking_min": 0,
+      "screen_min": 23
+    },
+    {
+      "rank": 61,
       "nickname": "周游",
       "score": 8.41,
       "presence_min": 22.8,
@@ -488,20 +496,12 @@
       "screen_min": 22
     },
     {
-      "rank": 61,
+      "rank": 62,
       "nickname": "德州蝙蝠侠",
       "score": 7.69,
       "presence_min": 20.5,
       "speaking_min": 0,
       "screen_min": 20
-    },
-    {
-      "rank": 62,
-      "nickname": "阴雨天",
-      "score": 5.72,
-      "presence_min": 15.2,
-      "speaking_min": 0,
-      "screen_min": 15
     },
     {
       "rank": 63,
@@ -665,11 +665,11 @@
     }
   ],
   "source": {
-    "at": "2026-10-28 00:56:19",
-    "members": 17,
-    "watch_state": "ok"
+    "at": "2026-10-28 01:13:49",
+    "members": 8,
+    "watch_state": "fail"
   },
   "status": "live",
-  "_published_at": "2026-10-28 00:56:23",
-  "_published_epoch": 1793120183
+  "_published_at": "2026-10-28 01:14:03",
+  "_published_epoch": 1793121243
 }

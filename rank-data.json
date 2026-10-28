@@ -2,7 +2,7 @@
   "ok": true,
   "season": "S3",
   "day": "2026-10-28",
-  "generated_at": "2026-10-28 20:59:00",
+  "generated_at": "2026-10-28 21:14:00",
   "refresh_sec": 15,
   "total_players": 75,
   "top_score": 280.53,
@@ -609,11 +609,11 @@
     }
   ],
   "source": {
-    "at": "2026-10-28 20:58:57",
+    "at": "2026-10-28 21:13:41",
     "members": 37,
     "watch_state": "fail"
   },
   "status": "live",
-  "_published_at": "2026-10-28 20:59:02",
-  "_published_epoch": 1793192342
+  "_published_at": "2026-10-28 21:14:02",
+  "_published_epoch": 1793193242
 }

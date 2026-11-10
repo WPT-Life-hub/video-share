@@ -2,9 +2,9 @@
   "ok": true,
   "season": "S4",
   "day": "2026-11-10",
-  "generated_at": "2026-11-10 19:13:59",
+  "generated_at": "2026-11-10 19:28:59",
   "refresh_sec": 15,
-  "total_players": 1,
+  "total_players": 2,
   "top_score": 0.75,
   "rows": [
     {
@@ -14,12 +14,20 @@
       "presence_min": 3.0,
       "speaking_min": 0,
       "screen_min": 0
+    },
+    {
+      "rank": 2,
+      "nickname": "小白白",
+      "score": 0.56,
+      "presence_min": 2.2,
+      "speaking_min": 0,
+      "screen_min": 0
     }
   ],
   "source": {
-    "at": "2026-11-10 19:13:30",
-    "members": 0,
-    "watch_state": "idle"
+    "at": "2026-11-10 19:28:57",
+    "members": 38,
+    "watch_state": "probe"
   },
   "newcomer": {
     "enabled": true,
@@ -34,6 +42,6 @@
     "qualified_count": 0
   },
   "status": "live",
-  "_published_at": "2026-11-10 19:14:02",
-  "_published_epoch": 1794309242
+  "_published_at": "2026-11-10 19:29:02",
+  "_published_epoch": 1794310142
 }

@@ -2,13 +2,22 @@
   "ok": true,
   "season": "S4",
   "day": "2026-11-10",
-  "generated_at": "2026-11-10 18:53:59",
+  "generated_at": "2026-11-10 19:13:59",
   "refresh_sec": 15,
-  "total_players": 0,
-  "top_score": 0,
-  "rows": [],
+  "total_players": 1,
+  "top_score": 0.75,
+  "rows": [
+    {
+      "rank": 1,
+      "nickname": "ni",
+      "score": 0.75,
+      "presence_min": 3.0,
+      "speaking_min": 0,
+      "screen_min": 0
+    }
+  ],
   "source": {
-    "at": "2026-11-10 18:53:54",
+    "at": "2026-11-10 19:13:30",
     "members": 0,
     "watch_state": "idle"
   },
@@ -24,7 +33,7 @@
     "rows": [],
     "qualified_count": 0
   },
-  "status": "waiting",
-  "_published_at": "2026-11-10 18:54:02",
-  "_published_epoch": 1794308042
+  "status": "live",
+  "_published_at": "2026-11-10 19:14:02",
+  "_published_epoch": 1794309242
 }

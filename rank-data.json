@@ -2,7 +2,7 @@
   "ok": true,
   "season": "S4",
   "day": "2026-11-12",
-  "generated_at": "2026-11-13 02:29:00",
+  "generated_at": "2026-11-13 02:44:00",
   "refresh_sec": 15,
   "total_players": 55,
   "top_score": 392.14,
@@ -449,7 +449,7 @@
     }
   ],
   "source": {
-    "at": "2026-11-13 02:28:22",
+    "at": "2026-11-13 02:43:24",
     "members": 0,
     "watch_state": "idle"
   },
@@ -466,6 +466,6 @@
     "qualified_count": 0
   },
   "status": "live",
-  "_published_at": "2026-11-13 02:29:02",
-  "_published_epoch": 1794508142
+  "_published_at": "2026-11-13 02:44:02",
+  "_published_epoch": 1794509042
 }

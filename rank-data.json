@@ -2,13 +2,13 @@
   "ok": true,
   "season": "S4",
   "day": "2026-11-20",
-  "generated_at": "2026-11-20 16:48:59",
+  "generated_at": "2026-11-20 17:03:59",
   "refresh_sec": 15,
   "total_players": 0,
   "top_score": 0,
   "rows": [],
   "source": {
-    "at": "2026-11-20 16:48:57",
+    "at": "2026-11-20 17:02:58",
     "members": 0,
     "watch_state": "idle"
   },
@@ -25,6 +25,6 @@
     "qualified_count": 0
   },
   "status": "waiting",
-  "_published_at": "2026-11-20 16:49:04",
-  "_published_epoch": 1795164544
+  "_published_at": "2026-11-20 17:04:05",
+  "_published_epoch": 1795165445
 }

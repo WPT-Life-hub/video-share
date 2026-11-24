@@ -2,29 +2,22 @@
   "ok": true,
   "season": "S4",
   "day": "2026-11-24",
-  "generated_at": "2026-11-24 21:04:00",
+  "generated_at": "2026-11-24 22:34:15",
   "refresh_sec": 15,
   "total_players": 0,
   "top_score": 0,
   "rows": [],
   "source": {
-    "at": "2026-11-24 21:00:37",
-    "members": 43,
-    "watch_state": "ok"
+    "at": "2026-11-24 22:33:43",
+    "members": 0,
+    "watch_state": "idle"
   },
   "newcomer": {
     "enabled": false,
-    "threshold": 60.0,
-    "valid_days": 2,
-    "base_prize": 88,
-    "settle_day": "2026-11-25",
-    "next_pool": 1848,
-    "carry_amount": 616,
-    "last_settled_day": "2026-11-11",
     "rows": [],
     "qualified_count": 0
   },
   "status": "waiting",
-  "_published_at": "2026-11-24 21:04:09",
-  "_published_epoch": 1795525449
+  "_published_at": "2026-11-24 22:34:15",
+  "_published_epoch": 1795530855
 }

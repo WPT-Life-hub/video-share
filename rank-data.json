@@ -2,22 +2,55 @@
   "ok": true,
   "season": "S4",
   "day": "2026-11-25",
-  "generated_at": "2026-11-25 21:24:00",
+  "generated_at": "2026-11-25 21:36:42",
   "refresh_sec": 15,
-  "total_players": 0,
-  "top_score": 0,
-  "rows": [],
+  "total_players": 4,
+  "top_score": 4.56,
+  "rows": [
+    {
+      "rank": 1,
+      "nickname": "九道#5546",
+      "score": 4.56,
+      "presence_min": 12.2,
+      "speaking_min": 0,
+      "screen_min": 12
+    },
+    {
+      "rank": 2,
+      "nickname": "故居#7021",
+      "score": 4.12,
+      "presence_min": 11.0,
+      "speaking_min": 0,
+      "screen_min": 11
+    },
+    {
+      "rank": 3,
+      "nickname": "紫梦幻夜#9909",
+      "score": 1.57,
+      "presence_min": 3.5,
+      "speaking_min": 0,
+      "screen_min": 2
+    },
+    {
+      "rank": 4,
+      "nickname": "Koi#5809",
+      "score": 0.84,
+      "presence_min": 2.2,
+      "speaking_min": 0,
+      "screen_min": 2
+    }
+  ],
   "source": {
-    "at": "2026-11-25 21:23:23",
-    "members": 0,
-    "watch_state": "idle"
+    "at": "2026-11-25 21:36:36",
+    "members": 25,
+    "watch_state": "ok"
   },
   "newcomer": {
     "enabled": false,
     "rows": [],
     "qualified_count": 0
   },
-  "status": "waiting",
-  "_published_at": "2026-11-25 21:24:01",
-  "_published_epoch": 1795613041
+  "status": "live",
+  "_published_at": "2026-11-25 21:36:42",
+  "_published_epoch": 1795613802
 }

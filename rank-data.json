@@ -2,21 +2,29 @@
   "ok": true,
   "season": "S4",
   "day": "2026-11-27",
-  "generated_at": "2026-11-27 21:19:16",
+  "generated_at": "2026-11-27 21:38:53",
   "refresh_sec": 15,
-  "total_players": 21,
-  "top_score": 76.29,
+  "total_players": 23,
+  "top_score": 88.47,
   "rows": [
     {
       "rank": 1,
       "nickname": "shy#7988",
-      "score": 76.29,
-      "presence_min": 62.2,
-      "speaking_min": 22,
+      "score": 88.47,
+      "presence_min": 76.5,
+      "speaking_min": 25,
       "screen_min": 0
     },
     {
       "rank": 2,
+      "nickname": "阿宇先生#5141",
+      "score": 86.1,
+      "presence_min": 76.5,
+      "speaking_min": 14,
+      "screen_min": 76
+    },
+    {
+      "rank": 3,
       "nickname": "伤心雨25#7748",
       "score": 75.02,
       "presence_min": 50.2,
@@ -24,119 +32,119 @@
       "screen_min": 50
     },
     {
-      "rank": 3,
-      "nickname": "阿宇先生#5141",
-      "score": 62.81,
-      "presence_min": 62.2,
-      "speaking_min": 10,
-      "screen_min": 62
-    },
-    {
       "rank": 4,
       "nickname": "伤心太平洋66#3725",
-      "score": 24.15,
-      "presence_min": 58.5,
-      "speaking_min": 1,
-      "screen_min": 48
+      "score": 36.43,
+      "presence_min": 72.8,
+      "speaking_min": 3,
+      "screen_min": 55
     },
     {
       "rank": 5,
       "nickname": "Koi#5809",
-      "score": 23.36,
-      "presence_min": 61.8,
-      "speaking_min": 0,
-      "screen_min": 62
+      "score": 34.83,
+      "presence_min": 78.5,
+      "speaking_min": 1,
+      "screen_min": 76
     },
     {
       "rank": 6,
-      "nickname": "鑫記渔樂#9999",
-      "score": 23.28,
-      "presence_min": 62.2,
-      "speaking_min": 0,
-      "screen_min": 62
+      "nickname": "一路狂飙#5776",
+      "score": 29.05,
+      "presence_min": 76.2,
+      "speaking_min": 3,
+      "screen_min": 3
     },
     {
       "rank": 7,
-      "nickname": "重炮手雷龙#2247",
-      "score": 23.28,
-      "presence_min": 62.2,
+      "nickname": "鑫記渔樂#9999",
+      "score": 28.62,
+      "presence_min": 76.5,
       "speaking_min": 0,
-      "screen_min": 62
+      "screen_min": 76
     },
     {
       "rank": 8,
-      "nickname": "一路狂飙#5776",
-      "score": 21.91,
-      "presence_min": 62.0,
-      "speaking_min": 2,
-      "screen_min": 3
+      "nickname": "重炮手雷龙#2247",
+      "score": 28.62,
+      "presence_min": 76.5,
+      "speaking_min": 0,
+      "screen_min": 76
     },
     {
       "rank": 9,
       "nickname": "tom#8927",
-      "score": 20.91,
-      "presence_min": 57.8,
+      "score": 26.25,
+      "presence_min": 72.0,
       "speaking_min": 0,
-      "screen_min": 54
+      "screen_min": 68
     },
     {
       "rank": 10,
       "nickname": "you12#8681",
-      "score": 20.59,
-      "presence_min": 55.0,
+      "score": 25.94,
+      "presence_min": 69.2,
       "speaking_min": 0,
-      "screen_min": 55
+      "screen_min": 69
     },
     {
       "rank": 11,
       "nickname": "余生请#4858",
-      "score": 20.44,
-      "presence_min": 54.5,
+      "score": 25.78,
+      "presence_min": 68.8,
       "speaking_min": 0,
-      "screen_min": 54
+      "screen_min": 69
     },
     {
       "rank": 12,
       "nickname": "大大大佬#1143",
-      "score": 20.16,
-      "presence_min": 53.8,
+      "score": 25.5,
+      "presence_min": 68.0,
       "speaking_min": 0,
-      "screen_min": 54
+      "screen_min": 68
     },
     {
       "rank": 13,
       "nickname": "许多#8306",
-      "score": 19.97,
-      "presence_min": 53.2,
+      "score": 25.31,
+      "presence_min": 67.5,
       "speaking_min": 0,
-      "screen_min": 53
+      "screen_min": 68
     },
     {
       "rank": 14,
       "nickname": "雷猴啊#0422",
-      "score": 19.69,
-      "presence_min": 52.5,
+      "score": 25.03,
+      "presence_min": 66.8,
       "speaking_min": 0,
-      "screen_min": 52
+      "screen_min": 67
     },
     {
       "rank": 15,
-      "nickname": "迎祥又催财#6687",
-      "score": 19.38,
-      "presence_min": 62.2,
+      "nickname": "wahaha#9470",
+      "score": 22.84,
+      "presence_min": 61.0,
       "speaking_min": 0,
-      "screen_min": 30
+      "screen_min": 61
     },
     {
       "rank": 16,
-      "nickname": "wahaha#9470",
-      "score": 17.5,
-      "presence_min": 46.8,
+      "nickname": "迎祥又催财#6687",
+      "score": 22.66,
+      "presence_min": 71.0,
       "speaking_min": 0,
-      "screen_min": 46
+      "screen_min": 39
     },
     {
       "rank": 17,
+      "nickname": "Tonylilili#7880",
+      "score": 11.46,
+      "presence_min": 6.0,
+      "speaking_min": 2,
+      "screen_min": 6
+    },
+    {
+      "rank": 18,
       "nickname": "哩哩#1125",
       "score": 9.12,
       "presence_min": 24.5,
@@ -144,7 +152,7 @@
       "screen_min": 24
     },
     {
-      "rank": 18,
+      "rank": 19,
       "nickname": "九道#5546",
       "score": 7.5,
       "presence_min": 20.0,
@@ -152,7 +160,7 @@
       "screen_min": 20
     },
     {
-      "rank": 19,
+      "rank": 20,
       "nickname": "我爱大虎#2159",
       "score": 1.5,
       "presence_min": 4.0,
@@ -160,7 +168,7 @@
       "screen_min": 4
     },
     {
-      "rank": 20,
+      "rank": 21,
       "nickname": "会飞的鱼#9405",
       "score": 0.44,
       "presence_min": 42.2,
@@ -168,18 +176,26 @@
       "screen_min": 1
     },
     {
-      "rank": 21,
+      "rank": 22,
       "nickname": "6666666#5474",
       "score": 0.19,
+      "presence_min": 0.5,
+      "speaking_min": 0,
+      "screen_min": 0
+    },
+    {
+      "rank": 23,
+      "nickname": "点都估你唔到#1137",
+      "score": 0.16,
       "presence_min": 0.5,
       "speaking_min": 0,
       "screen_min": 0
     }
   ],
   "source": {
-    "at": "2026-11-27 21:19:15",
-    "members": 22,
-    "watch_state": "ok"
+    "at": "2026-11-27 21:38:52",
+    "members": 15,
+    "watch_state": "suspect"
   },
   "newcomer": {
     "enabled": false,
@@ -187,6 +203,6 @@
     "qualified_count": 0
   },
   "status": "live",
-  "_published_at": "2026-11-27 21:19:16",
-  "_published_epoch": 1795785556
+  "_published_at": "2026-11-27 21:39:01",
+  "_published_epoch": 1795786741
 }
